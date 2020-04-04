@@ -1,0 +1,31 @@
+﻿@page
+@model WorkersApp.Auth.LoginModel
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <h4>Log in</h4>
+                <hr />
+                <div class="form-group">
+                    <span class="text-danger">
+                    @Html.DisplayFor(m => Model.Error_Hadnler)
+                    </span>
+                    <div>
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="col-5">
+                <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+

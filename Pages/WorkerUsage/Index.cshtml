@@ -1,0 +1,81 @@
+﻿@page
+@model WorkersApp.Pages.WorkerUsage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    @if (Model.User.IsSeller)
+    {
+        <p>
+            <a asp-page="Create">Create New</a>
+        </p>
+    }
+    <form method="post">
+        <div class="col-2 offset-1">
+            <input asp-for="Search" class="form-control" />
+        </div>
+        <div class="col-2 offset-1">
+            <input type="submit" value="Search" class="btn btn-primary form-control text-white" />
+        </div>
+    </form>
+    <label></label>
+    <form method="get">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                            @Html.DisplayNameFor(model => model.Worker.Name)
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.SurnameSort">
+                            @Html.DisplayNameFor(model => model.Worker.Surname)
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.ExperienceSort">
+                            @Html.DisplayNameFor(model => model.Worker.Experience)
+                        </a>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Worker.PhoneNumber)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+    </form>
+    <tbody>
+        @foreach (var item in Model.Workers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Experience)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @if (Model.User.IsSeller)
+                    {
+                        <div>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id"> Delete </a>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
