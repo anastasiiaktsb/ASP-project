@@ -12,9 +12,9 @@ namespace WorkersApp.Auth
 {
     public class RegistrationModel : PageModel
     {
-        private readonly ApplicationDBContext data;
+        private readonly ApplicationDbContext data;
 
-        public RegistrationModel(ApplicationDBContext db)
+        public RegistrationModel(ApplicationDbContext db)
         {
             data = db;
         }
@@ -37,6 +37,7 @@ namespace WorkersApp.Auth
                 var email = (from user in data.User
                              where user.Email == User.Email
                              select user.Email).FirstOrDefault();
+
                 if(email != null)
                 {
                     return RedirectToPage(new { ErrorHandler = "Email is already in use" });

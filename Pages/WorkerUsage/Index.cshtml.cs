@@ -13,9 +13,9 @@ namespace WorkersApp.Pages.WorkerUsage
 {
     public class IndexModel : PageModel
     {
-        private readonly WorkersApp.Models.ApplicationDBContext _context;
+        private readonly WorkersApp.Models.ApplicationDbContext _context;
 
-        public IndexModel(WorkersApp.Models.ApplicationDBContext context)
+        public IndexModel(WorkersApp.Models.ApplicationDbContext context)
         {
             _context = context;
         }

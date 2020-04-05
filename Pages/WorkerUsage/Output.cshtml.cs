@@ -13,8 +13,8 @@ namespace WorkersApp.Pages.WorkerUsage
 {
     public class OutputModel : PageModel
     {
-        private readonly ApplicationDBContext data;
-        public OutputModel(ApplicationDBContext db)
+        private readonly ApplicationDbContext data;
+        public OutputModel(ApplicationDbContext db)
         {
             data = db;
         }

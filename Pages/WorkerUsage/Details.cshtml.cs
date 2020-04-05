@@ -11,9 +11,9 @@ namespace WorkersApp.Pages.WorkerUsage
 {
     public class DetailsModel : PageModel
     {
-        private readonly WorkersApp.Models.ApplicationDBContext _context;
+        private readonly WorkersApp.Models.ApplicationDbContext _context;
 
-        public DetailsModel(WorkersApp.Models.ApplicationDBContext context)
+        public DetailsModel(WorkersApp.Models.ApplicationDbContext context)
         {
             _context = context;
         }

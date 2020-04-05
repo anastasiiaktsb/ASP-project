@@ -11,9 +11,9 @@ namespace WorkersApp.Pages.WorkerUsage
 {
     public class DeleteModel : PageModel
     {
-        private readonly WorkersApp.Models.ApplicationDBContext _context;
+        private readonly WorkersApp.Models.ApplicationDbContext _context;
 
-        public DeleteModel(WorkersApp.Models.ApplicationDBContext context)
+        public DeleteModel(WorkersApp.Models.ApplicationDbContext context)
         {
             _context = context;
         }

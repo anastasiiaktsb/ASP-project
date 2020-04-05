@@ -13,9 +13,9 @@ namespace WorkersApp.Pages.WorkerUsage
 {
     public class CreateModel : PageModel
     {
-        private readonly WorkersApp.Models.ApplicationDBContext _context;
+        private readonly WorkersApp.Models.ApplicationDbContext _context;
 
-        public CreateModel(WorkersApp.Models.ApplicationDBContext context)
+        public CreateModel(WorkersApp.Models.ApplicationDbContext context)
         {
             _context = context;
         }

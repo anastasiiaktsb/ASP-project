@@ -15,9 +15,9 @@ namespace WorkersApp.Auth
 {
     public class LoginModel : PageModel
     {
-        private readonly ApplicationDBContext data;
+        private readonly ApplicationDbContext data;
 
-        public LoginModel(ApplicationDBContext db)
+        public LoginModel(ApplicationDbContext db)
         {
             data = db;
         }

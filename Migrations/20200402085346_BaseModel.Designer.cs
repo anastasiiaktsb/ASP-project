@@ -8,7 +8,7 @@ using WorkersApp.Models;
 
 namespace WorkersApp.Migrations
 {
-    [DbContext(typeof(ApplicationDBContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20200402085346_BaseModel")]
     partial class BaseModel
     {
