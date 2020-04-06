@@ -19,6 +19,7 @@ namespace WorkersApp.Pages.WorkerUsage
         {
             _context = context;
         }
+        public string CurrentFilter { get; set; }
         [BindProperty]
         public string Search { get; set; }
         public User User { get; set; }
@@ -30,7 +31,7 @@ namespace WorkersApp.Pages.WorkerUsage
         public string ExperienceSort { get; set; }
         public string CurrentSort { get; set; }
 
-        public async Task<IActionResult> OnGet(string sortOrder)
+        public async Task<IActionResult> OnGet(string sortOrder, string searchString)
         {
             if (string.IsNullOrWhiteSpace((string)HttpContext.Session.GetString("SessionUser")) == true)
             {
@@ -52,6 +53,18 @@ namespace WorkersApp.Pages.WorkerUsage
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             SurnameSort = sortOrder == "Surname" ? "surname_desc" : "Surname";
             ExperienceSort = sortOrder == "Experience" ? "experience_desc" : "Experience";
+            CurrentFilter = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                    Workers = (from worker in Workers
+                               where worker.Name.ToLower().Contains(searchString.ToLower()) ||
+                               worker.Surname.ToLower().Contains(searchString.ToLower()) ||
+                               worker.Experience.ToString().Contains(searchString) ||
+                               worker.PhoneNumber.Contains(searchString)
+                               select worker);
+                
+            }
+
             if (SurnameSort != null || NameSort != null || ExperienceSort != null)
             {
                 switch (sortOrder)
@@ -75,24 +88,11 @@ namespace WorkersApp.Pages.WorkerUsage
                         Workers = Workers.OrderBy(s => s.Name);
                         break;
                 }
+
             }
             return Page();
 
         }
 
-        public void OnPost()
-        {
-            User = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
-            if (Search != null)
-            {
-                Workers = (from worker in _context.Worker
-                           where worker.Name.ToLower().Contains(Search.ToLower()) ||
-                           worker.Surname.ToLower().Contains(Search.ToLower()) ||
-                           worker.Experience.ToString().Contains(Search) ||
-                           worker.PhoneNumber.Contains(Search)
-                           select worker).ToList();
-            }
-
-        }
     }
 }

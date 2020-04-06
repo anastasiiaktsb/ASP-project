@@ -13,12 +13,15 @@
             <a asp-page="Create">Create New</a>
         </p>
     }
-    <form method="post">
-        <div class="col-2 offset-1">
-            <input asp-for="Search" class="form-control" />
-        </div>
-        <div class="col-2 offset-1">
-            <input type="submit" value="Search" class="btn btn-primary form-control text-white" />
+
+    <form  method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name:
+                <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-page="./Index">Back to full List</a>
+            </p>
         </div>
     </form>
     <label></label>
