@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,6 +26,20 @@ namespace WorkersApp.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
-        public bool IsSeller { get; set; }
+        [EnumDataType(typeof(RoleBar))]
+        public RoleBar Role { get; set; }
+
+        public enum RoleBar
+        {
+            Admin,
+            Seller,
+            Buyer
+        }
+        [DefaultValue(true)]
+        public bool IsActive { get; set; }
+        public User()
+        {
+            IsActive = true;
+        }
     }
 }

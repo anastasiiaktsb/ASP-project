@@ -7,7 +7,7 @@
 
 <h1>Index</h1>
 <div>
-    @if (Model.User.IsSeller)
+    @if (Model.User.Role == Models.User.RoleBar.Seller)
     {
         <p>
             <a asp-page="Create">Create New</a>
@@ -17,7 +17,7 @@
     <form  method="get">
         <div class="form-actions no-color">
             <p>
-                Find by name:
+                Find items:
                 <input type="text" name="SearchString" value="@Model.CurrentFilter" />
                 <input type="submit" value="Search" class="btn btn-primary" /> |
                 <a asp-page="./Index">Back to full List</a>
@@ -68,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
-                    @if (Model.User.IsSeller)
+                    @if (Model.User.Role == Models.User.RoleBar.Seller)
                     {
                         <div>
                             <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
@@ -81,4 +81,5 @@
         }
     </tbody>
     </table>
+    
 </div>

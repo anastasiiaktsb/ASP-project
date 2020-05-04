@@ -38,8 +38,11 @@ namespace WorkersApp.Pages.WorkerUsage
                 return RedirectToPage("/Auth/Login");
             }
             User = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
-
-            if (User.IsSeller)
+            if (User.Role == User.RoleBar.Admin)
+            {
+                return RedirectToPage("/Index");
+            }
+            if (User.Role == User.RoleBar.Seller)
             {
                 Workers = await (from worker in _context.Worker
                                  where worker.UserId == User.Id
