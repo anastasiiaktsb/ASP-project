@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using WorkersApp.Models;
 
@@ -51,14 +48,14 @@ namespace WorkersApp.Auth
                 return RedirectToPage(new { Error_Hadnler = "User is not found" });
             }
             bool verification = Crypto.VerifyHashedPassword(user_check.Password, Input.Password);
-            if (verification)
+            if (verification && user_check.IsActive)
             {
                 HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(user_check));
                 return RedirectToPage("/Index");
             }
             else
             {
-                return RedirectToPage(new { Error_Hadnler = "Password or email is incorrect" });
+                return RedirectToPage(new { Error_Hadnler = "Password or email is incorrect or user is unactive" });
             }
 
         }

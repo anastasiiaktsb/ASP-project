@@ -23,20 +23,23 @@
                 </div>
                 <span class="text-danger">
                     @Html.DisplayFor(m => Model.ErrorHandler)
-                    </span>
-                    <div class="form-group">
-                        <label asp-for="User.Password"></label>
-                        <input asp-for="User.Password" class="form-control" />
-                        <span asp-validation-for="User.Password" class="text-danger"></span>
-                    </div>
+                </span>
+                <div class="form-group">
+                    <label asp-for="User.Password"></label>
+                    <input asp-for="User.Password" class="form-control" />
+                    <span asp-validation-for="User.Password" class="text-danger"></span>
+                </div>
 
-                    <div class="form-group">
-                        <label asp-for="ConfirmPassword"></label>
-                        <input asp-for="ConfirmPassword" class="form-control" />
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    </div>
-                    <label asp-for="User.IsSeller"></label>
-                    <input asp-for="User.IsSeller" type="checkbox" checked data-toggle="toggle">
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <select asp-for="User.Role" asp-items="Html.GetEnumSelectList<Models.User.RoleBar>()">
+                        <option selected="selected" value="">Please select role</option>
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
